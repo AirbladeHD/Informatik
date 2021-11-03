@@ -6,9 +6,18 @@ def hash(string, hashLen):
     bytes = ""
     for b in byte:
         bytes = bytes + str(b)
-
-    #print("Bytes: " + bytes)
-    #print("Ursprüngliche Länge: " + str(len(bytes)))
+     
+    newBytes = ""
+    newByte = 0
+    factor = 0    
+              
+    if(len(bytes) > 150):
+        for i in bytes:
+            factor = factor + int(i)
+        for i in bytes:
+            newByte = int(i) * factor
+            newBytes = newBytes + str(newByte)
+        bytes = str(newBytes)    
 
     if(len(bytes) < hashLen):
         while(len(bytes) < hashLen):
@@ -20,7 +29,7 @@ def hash(string, hashLen):
                 secLastChar = int(bytes[4:8])
             newChar = lastChar + secLastChar
             bytes = bytes + str(newChar)
-
+    
     if(len(bytes) > hashLen):
         while(len(bytes) > hashLen):
             lastChar = int(bytes[-3:-1])
@@ -33,7 +42,7 @@ def hash(string, hashLen):
                 newChar = lastChar - secLastChar
             else:
                 newChar = secLastChar - lastChar
-            byteSub = bytes[-3:-1][::-1]
+            byteSub = bytes[-4:-1][::-1]
             bytes = bytes[::-1]
             bytes = bytes.replace(str(byteSub), str(newChar), 1)
             bytes = bytes[::-1]
@@ -62,8 +71,10 @@ def hash(string, hashLen):
         else:
             hash = hash + str(blockHex)
     
+    print("Programm abgeschlossen")
     return hash
-    #print(len(hash))
-    #print("Neue Länge: " + str(len(bytes)))
     
+print(hash("uvnhresubtisuernguvgahuriegviperbvipsahreufbagifüaoerjfiojraegbbbbbbbirguireuiahhgurednsfruifhur4ffviwbubfhbslhdbviwevbeS", 512))
+print(hash("uvnhresubtisuernguvgahuriegviperbvipsahreufbagifüaoerjfiojraegbbbbbbbirguireuiahhgurednsfruifhur4ffviwbubfhbslhdbviwevbes", 512))
 print(hash("Hello World", 512))
+print(hash("Hello World!", 512))
