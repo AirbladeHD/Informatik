@@ -24,10 +24,12 @@ def hash(string, *args):
             hashLen = arg
         if(type(hashLen) != type(factor)):
             return "Argument 2 muss eine Ganzzahl sein"
+        customHash = True
     else:
         hashLen = len(bytes)
         while(hashLen%16 != 0):
             hashLen = hashLen + 1
+        customHash = False
 
     if(len(bytes) < hashLen):
         while(len(bytes) < hashLen):
@@ -77,7 +79,10 @@ def hash(string, *args):
             checksum = checksum + 1000
         blockHex = '{:03x}'.format(checksum)
         if(hash == None):
-            hash = "duke" + str(hashLen) + "$" + str(blockHex)
+            if(customHash == True):
+                hash = "duke" + str(hashLen) + "$" + str(blockHex)
+            else:
+                hash = "duke$" + str(blockHex)
         else:
             hash = hash + str(blockHex)
     
