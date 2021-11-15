@@ -1,3 +1,5 @@
+import math
+
 def ist_schaltjahr(jahr):
     if(jahr%400 == 0 or jahr%4 == 0 and jahr%100 != 0):
         return True
@@ -78,6 +80,23 @@ def jahreskalender(jahr):
         tag = ft[2]
         jahr = ft[0]
  
+def ostersonntag(x):
+    k = x/100
+    m = 15 + (3*k + 3)/4 - (8*k + 13)/25
+    s = 2 - (3*k + 3)/4
+    a = x%19
+    d = (19*a + m) % 30
+    r = d/29 + (d/28 - d/29) * (a/11)
+    og = 21 + d - r
+    sz = 7 - (x + x / 4 + s)%7
+    oe = 7 - (og - sz)%7
+    os = og + oe
+    if(1 <= os <= 31):
+        return "Das Datum des Ostersonntags ist der " + str(math.floor(os)) + ". März"
+    elif(os > 31):
+        return "Das Datum des Ostersonntags ist der " + str(math.floor(os-31)) + ". April"
+
 #print(wochentag(2020, 11, 9))   
-jahreskalender(2021)
+#jahreskalender(2021)
 #print(folgetag(2000, 13, 21))
+print(ostersonntag(2024))

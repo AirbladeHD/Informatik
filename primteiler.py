@@ -1,4 +1,5 @@
 from primzahlen import ist_primzahl
+import math
 
 def primZahlenVonBis(anfang, ende):
 	zahlen = []
@@ -37,12 +38,27 @@ def primFaktoren(n):
 	return primFaktoren
 
 def primFaktorZerlegung(n):
+	run = True
 	zerlegung = []
-	primFaktoren = primFaktoren(n)
-	for p in primFaktoren:
-		while(primFaktoren(p)!=[]:
-			pass
-
+	if(ist_primzahl(n)):
+		zerlegung.append(n)
+		return zerlegung
+	while(run):
+		faktoren = primFaktoren(n)
+		zerlegung.append(faktoren[0])
+		n = n/faktoren[0]
+		if(ist_primzahl(n)):
+			zerlegung.append(math.ceil(n))
+			run = False
+			break
+	return zerlegung
 
 #print(primZahlenVonBis(1,52))
-print(primFaktoren(8))
+#print(primFaktoren(36))
+#print(primFaktoren(10))
+print(primFaktorZerlegung(24))
+print(primFaktorZerlegung(36))
+print(primFaktorZerlegung(42))
+print(primFaktorZerlegung(17))
+print(primFaktorZerlegung(26))
+print(primFaktorZerlegung(984))
