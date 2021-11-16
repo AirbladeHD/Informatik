@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from itertools import product
 import time
 from dukeHash import hash
@@ -5,7 +7,7 @@ from dukeHash import hash
 def bruteforce():
 
     nonce = "jdfh"
-    nonceHash = "duke$3e93ea3ea3e93ea3ea3e93ea3ea3eb3ec3eb3eb3e93ea3ed"
+    nonceHash = hash(nonce)
     chars = 'ABCDEFGHIJKLMOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' # chars to look for
     attempts = 0
 
