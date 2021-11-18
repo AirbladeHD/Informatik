@@ -107,11 +107,9 @@ def compress(blocks):
     for e in checksums:
         for f in str(e):
             factor = factor + int(f)
-        c = e * factor * factor
-        if(len(str(c))<9):
-            c = c + 100000000
+        c = e * factor * math.ceil(math.sqrt(factor))
         #print(factor)
-        checksums[checksums.index(e)] = c
+        checksums[checksums.index(e)] = c    
 
     dig = None
 
@@ -127,7 +125,7 @@ def compress(blocks):
 def hash(string):
     pre = preHash(string)
     hash = compress(pre)
-    while(not len(str(hash)) == 61):
+    while(not len(str(hash)) == 50):
         pre = preHash(hash)
         hash = compress(pre)
     return hash
