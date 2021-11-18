@@ -132,6 +132,9 @@ def hash(string):
         hash = compress(pre)
     return hash
 
+print(hash("zzz"))
+print(hash("zzz"))
+
 #print(hash("Hello World"))
 #print(hash("Hello WorlD"))
 #print(hash("Hello World!"))

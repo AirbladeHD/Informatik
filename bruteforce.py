@@ -2,7 +2,7 @@
 
 from itertools import product
 import time
-from dukeHash import hash
+from dukeHashv2 import hash
 
 def bruteforce():
 
