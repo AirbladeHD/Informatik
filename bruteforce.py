@@ -1,11 +1,12 @@
 # -*- coding: UTF-8 -*- 
 from itertools import product
 import time
+import os
 from dukeHashv2 import hash
  
 def bruteforce():
  
-    nonce = "zzzz"
+    nonce = "zz"
     nonceHash = hash(nonce)
     chars = 'ABCDEFGHIJKLMOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' # chars to look for
     attempts = 0
@@ -15,6 +16,8 @@ def bruteforce():
     rate = 0
     mins = 0
     hrs = 0
+    rateList = []
+    d = 0
  
     for length in range(1, len(nonce) + 1): # only do lengths of 1 + 2
         to_attempt = product(chars, repeat=length)
@@ -25,14 +28,21 @@ def bruteforce():
             if(hash(''.join(attempt)) == nonceHash):
                 t1 = time.time()
                 total = t1-t0
-                print ("Versuche: " + str(attempts) + " Nonce: " + ''.join(attempt) + " Zeit: " + str(total), end="\r")
+                os.system('cls')
+                for r in rateList:
+                    d = d + r
+                d = str(round(d/len(rateList)))+"H/s"
+                print ("Versuche: " + str(attempts) + " Nonce: " + ''.join(attempt) + " Zeit: " + str(total)+"s" + " Durchnitt Hashrate: " + d, end="\n")
                 return
             attempts = attempts + 1
             t1 = time.time()
             stamp2 = round(t1-t3)
             if(stamp2 > stamp):
                 t3 = time.time()
+                oldRate = rate
                 rate = (attempts - oldAttempts)*2
+                if(not rate == oldRate):
+                    rateList.append(oldRate)
                 oldAttempts = attempts
             sek = round(t1-t0)
             #if(sek > 60):
@@ -48,7 +58,7 @@ def bruteforce():
                 #times = str(mins)+"m "+str(sek)+"s"
             #else:
                 #times = str(hrs)+"h "+str(mins)+"m "+str(sek)+"s"
-            print(hash(''.join(attempt))+" Versuche: "+str(attempts)+" Zeit: "+str(times)+" Hashrate: "+str(rate)+"H/s", end="\r")
+            print(hash(''.join(attempt))+" Aktueller Versuch: "+''.join(attempt)+" Versuche: "+str(attempts)+" Zeit: "+str(times)+" Hashrate: "+str(rate)+"H/s", end="\r")
  
     t1 = time.time()
     total = t1-t0
