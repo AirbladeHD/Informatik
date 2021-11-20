@@ -96,7 +96,17 @@ def ostersonntag(x):
     elif(os > 31):
         return "Das Datum des Ostersonntags ist der " + str(math.floor(os-31)) + ". April"
 
+obst = ["Bananen","Birnen","Aprikosen"]
+
+def istIn(list, element):
+    if(element in list):
+        return True
+    else:
+        return False
+
+print(istIn(obst, "Bananen"))
+
 #print(wochentag(2020, 11, 9))   
 #jahreskalender(2021)
 #print(folgetag(2000, 13, 21))
-print(ostersonntag(2024))
+#print(ostersonntag(2024))
