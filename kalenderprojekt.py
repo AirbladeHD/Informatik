@@ -96,7 +96,8 @@ def ostersonntag(x):
     elif(os > 31):
         return "Das Datum des Ostersonntags ist der " + str(math.floor(os-31)) + ". April"
 
-obst = ["Bananen","Birnen","Aprikosen"]
+obst = ["Bananen","Birnen","Aprikosen","Bananen","Birnen","Aprikosen"]
+zahlen = [21,123,432,12,234,21]
 
 def istIn(list, element):
     if(element in list):
@@ -104,8 +105,43 @@ def istIn(list, element):
     else:
         return False
 
-print(istIn(obst, "Bananen"))
+def zaehle(liste, wert):
+    return liste.count(wert)
 
+def summe(liste):
+    s = 0
+    for i in liste:
+        s += i
+    return s
+
+def durchschnitt(liste):
+    s = summe(liste)
+    d = s / len(liste)
+    return d
+
+def erstePosition(liste, wert):
+    for i in liste:
+        if i == wert:
+            return liste.index(i)
+    return -1
+
+def letztePosition(liste, wert):
+    c = 0
+    for i in liste:
+        if i == wert:
+            w = c
+        c += 1
+    return w
+
+def entferne(liste, wert):
+    for i in liste:
+        if i == wert:
+            liste.remove(i)
+    return liste
+
+print(entferne(obst, "Aprikosen"))
+
+#print(istIn(obst, "Bananen"))
 #print(wochentag(2020, 11, 9))   
 #jahreskalender(2021)
 #print(folgetag(2000, 13, 21))
