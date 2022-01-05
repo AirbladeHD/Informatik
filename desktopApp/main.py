@@ -54,8 +54,11 @@ class Element:
 
 mainWindow = Tk()
 mainWindow.title("Duke App Designer")
-mainWindow.geometry("1900x1200")
-mainWindow.iconphoto(False, PhotoImage(file='icon.ico'))
+w = mainWindow.winfo_screenwidth()
+h = mainWindow.winfo_screenheight()
+mainWindow.geometry(str(w) + "x" + str(h))
+icon = PhotoImage(file='desktopApp/icon.png')
+mainWindow.iconphoto(False, icon)
 
 menu = Menu(mainWindow)
 
