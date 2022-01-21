@@ -1,4 +1,5 @@
 import math
+import random
 
 def preHash(string):
 
